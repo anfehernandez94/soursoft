@@ -14,11 +14,11 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentListClient extends Fragment {
+public class FragmentCategoria extends Fragment {
 
     ListView lvClient;
 
-    public FragmentListClient() {
+    public FragmentCategoria() {
         // Required empty public constructor
     }
 
@@ -30,9 +30,9 @@ public class FragmentListClient extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_client, container, false);
         lvClient = (ListView) view.findViewById(R.id.lv_client);
 
-        Client c1 = new Client();
-        Client c2 = new Client();
-        Client c3 = new Client();
+        Client c1 = new Client("1","a");
+        Client c2 = new Client("2","b");
+        Client c3 = new Client("3","c");
 
         ArrayList<Client> clients = new ArrayList<>();
         clients.add(c1);

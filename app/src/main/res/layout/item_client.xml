@@ -4,7 +4,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip" >
     <ImageView
-        android:id="@+id/iv_logo"
+        android:id="@+id/iv_client_logo"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
@@ -19,7 +19,7 @@
         android:layout_height="26dip"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/iv_logo"
+        android:layout_toRightOf="@id/iv_client_logo"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Client name"
@@ -33,7 +33,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/iv_logo"
+        android:layout_toRightOf="@id/iv_client_logo"
         android:gravity="center_vertical"
         android:text="Description"
         android:textSize="12sp" />

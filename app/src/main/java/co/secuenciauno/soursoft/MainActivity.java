@@ -9,10 +9,30 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    FragmentManager fragmentManager;
+    FragmentCategoria fragmentStep0;
+    FragmentMapa fragmentStep1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentStep0 = new FragmentCategoria();
+        fragmentStep1 = new FragmentMapa();
+
+        fragmentTransaction.add(R.id.rl_fragment_problema, fragmentStep0);
+        fragmentTransaction.add(R.id.rl_fragment_problema, fragmentStep1);
+
+        fragmentTransaction.show(fragmentStep0);
+        fragmentTransaction.hide(fragmentStep1);
+
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -20,13 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentSearch fragmentSearch = new FragmentSearch();
-        FragmentListClient fragmentListClient = new FragmentListClient();
-        fragmentTransaction.add(R.layout.activity_main, fragmentSearch);
-        fragmentTransaction.add(R.layout.activity_main, fragmentListClient);
-        fragmentTransaction.commit();
+
 
         return true;
     }

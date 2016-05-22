@@ -16,6 +16,11 @@ public class Client {
 
     Client(){};
 
+    Client(String name, String description){
+        this.name = name;
+        this.description = description;
+    }
+
     Client(String name, String[] tel, String address, String logo, String photo){
         this.name = name;
         this.tel = tel;
