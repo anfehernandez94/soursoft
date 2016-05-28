@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -16,7 +17,13 @@ import java.util.ArrayList;
  */
 public class FragmentCategoria extends Fragment {
 
-    ListView lvClient;
+    Button btnCat1;
+    Button btnCat2;
+    Button btnCat3;
+    Button btnCat4;
+    Button btnCat5;
+    Button btnCat6;
+
 
     public FragmentCategoria() {
         // Required empty public constructor
@@ -27,19 +34,13 @@ public class FragmentCategoria extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_list_client, container, false);
-        lvClient = (ListView) view.findViewById(R.id.lv_client);
-
-        Client c1 = new Client("1","a");
-        Client c2 = new Client("2","b");
-        Client c3 = new Client("3","c");
-
-        ArrayList<Client> clients = new ArrayList<>();
-        clients.add(c1);
-        clients.add(c2);
-        clients.add(c3);
-
-        lvClient.setAdapter(new ItemClient(getActivity(), clients));
+        View view = inflater.inflate(R.layout.fragment_categoria, container, false);
+        btnCat1 = (Button) view.findViewById(R.id.btn_cat1);
+        btnCat2 = (Button) view.findViewById(R.id.btn_cat2);
+        btnCat3 = (Button) view.findViewById(R.id.btn_cat3);
+        btnCat4 = (Button) view.findViewById(R.id.btn_cat4);
+        btnCat5 = (Button) view.findViewById(R.id.btn_cat5);
+        btnCat6 = (Button) view.findViewById(R.id.btn_cat6);
 
 
         return view;
