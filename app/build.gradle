@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    buildToolsVersion '24.0.0 rc4'
 
     defaultConfig {
         applicationId "co.secuenciauno.soursoft"
@@ -21,5 +21,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    compile 'com.google.android.gms:play-services:9.0.1'
+    compile 'com.google.android.gms:play-services-ads:9.0.1'
 }
