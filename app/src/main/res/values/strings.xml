@@ -73,6 +73,8 @@
     <string name="problema_error_vida">No se pudo calcular la vida de anaquel</string>
     <string name="problema_new_problem">Nuevo Problema</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -8,16 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityMain extends AppCompatActivity {
 
     FragmentManager fragmentManager;
+    EditText etSearch;
+    ImageButton ibtnSearch;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ibtnSearch = (ImageButton)findViewById(R.id.ibtn_search);
+        etSearch = (EditText)findViewById(R.id.et_search);
+
 
         final FragmentCategoria fragmentStep0;
         final FragmentMapa fragmentStep1;

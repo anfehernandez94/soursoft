@@ -40,6 +40,7 @@ public class FragmentCategoria extends Fragment {
         btnCat6 = (Button) view.findViewById(R.id.btn_cat6);
 
 
+
         return view;
     }
 
