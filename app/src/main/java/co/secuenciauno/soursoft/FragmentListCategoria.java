@@ -3,11 +3,15 @@ package co.secuenciauno.soursoft;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,12 +21,14 @@ import java.util.ArrayList;
  */
 public class FragmentListCategoria extends Fragment {
 
-    ListView lv;
-    Context context;
+    TextView tvCategoria;
+    private ListView lvClient;
+    private Context context;
+    private View view;
 
-    ArrayList prgmName;
+
     //public static int [] prgmImages={R.drawable.images,R.drawable.images1,R.drawable.images2,R.drawable.images3,R.drawable.images4,R.drawable.images5,R.drawable.images6,R.drawable.images7,R.drawable.images8};
-    public static String [] prgmNameList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript"};
+    public static String [] listClients={"Cliente01","Cliente02","Cliente03","Cliente04","Cliente05","Cliente06","Cliente07","Cliente08","Cliente09"};
 
     public FragmentListCategoria() {
         // Required empty public constructor
@@ -32,16 +38,34 @@ public class FragmentListCategoria extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_list_categoria, container, false);
-        //setContentView(R.layout.activity_main);
+        if(view == null){
+            view = inflater.inflate(R.layout.fragment_list_categoria, container, false);
 
-        context=getActivity();
+            context=getActivity();
+            tvCategoria = (TextView)view.findViewById(R.id.tv_categoria);
+            lvClient=(ListView) view.findViewById(R.id.lv_client);
+        }
+        return view;
+    }
 
-        lv=(ListView) view.findViewById(R.id.lv_client);
-        lv.setAdapter(new AdapterListCategoria(context, prgmNameList/*,prgmImages*/));
+    @Override
+    public void onResume(){
+        super.onResume();
+        fillListCategoria();
+    }
 
-        return inflater.inflate(R.layout.fragment_list_categoria, container, false);
+    private void fillListCategoria(){
+        AdapterListCategoria adapter = new AdapterListCategoria(getActivity(), listClients/*,prgmImages*/);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), R.layout.adapter_list_categoria, R.id.tv_client_name,listClients);
+        lvClient.setAdapter(adapter1);
+//        adapter.notifyDataSetChanged();
+        lvClient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String  itemValue    = (String) lvClient.getItemAtPosition(position);
+                Toast.makeText(getActivity(), "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }

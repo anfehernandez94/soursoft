@@ -14,13 +14,18 @@ public class AdapterListCategoria extends BaseAdapter {
     String [] result;
     Context context;
     int [] imageId;
-    private static LayoutInflater inflater=null;
+    private LayoutInflater inflater=null;
+    View view;
+    Holder holder;
+
     public AdapterListCategoria(Context mainActivity, String[] prgmNameList/*, int[] prgmImages*/) {
         result=prgmNameList;
         context=mainActivity;
         //imageId=prgmImages;
-        inflater = ( LayoutInflater )context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.inflater = LayoutInflater.from(context);
+        holder=new Holder();
+//        inflater = ( LayoutInflater )context.
+//                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public class Holder
@@ -47,21 +52,25 @@ public class AdapterListCategoria extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder=new Holder();
-        View rowView = inflater.inflate(R.layout.adapter_list_categoria, null);
-        holder.tvClientName=(TextView) rowView.findViewById(R.id.tv_client_name);
-        holder.tvClientDescription=(TextView) rowView.findViewById(R.id.tv_client_description);
-        holder.ivClientLogo=(ImageView) rowView.findViewById(R.id.iv_client_logo);
+        if(view == null){
+            view = inflater.inflate(R.layout.adapter_list_categoria, null);
+        }
+
+        holder.tvClientName=(TextView) view.findViewById(R.id.tv_client_name);
         holder.tvClientName.setText(result[position]);
+
+        holder.tvClientDescription=(TextView) view.findViewById(R.id.tv_client_description);
         holder.tvClientDescription.setText("Descripción" + result[position]);
-        holder.ivClientLogo.setImageResource(imageId[position]);
-        rowView.setOnClickListener(new View.OnClickListener() {
+
+        holder.ivClientLogo=(ImageView) view.findViewById(R.id.iv_client_logo);
+//        holder.ivClientLogo.setImageResource(imageId[position]);
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
             }
         });
-        return rowView;
+        return view;
     }
 }

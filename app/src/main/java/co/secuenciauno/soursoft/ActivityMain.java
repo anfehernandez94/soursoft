@@ -18,6 +18,10 @@ public class ActivityMain extends AppCompatActivity {
     ImageButton ibtnSearch;
 
 
+    FragmentCategoria fragmentCategoria = new FragmentCategoria();
+    FragmentMapa fragmentMapa = new FragmentMapa();
+    FragmentListCategoria fragmentListCategoria = new FragmentListCategoria();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,21 +30,16 @@ public class ActivityMain extends AppCompatActivity {
         ibtnSearch = (ImageButton)findViewById(R.id.ibtn_search);
         etSearch = (EditText)findViewById(R.id.et_search);
 
-
-        final FragmentCategoria fragmentStep0;
-        final FragmentMapa fragmentStep1;
-
         fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentStep0 = new FragmentCategoria();
-        fragmentStep1 = new FragmentMapa();
+        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentCategoria);
+        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentMapa);
+        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentListCategoria);
 
-        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentStep0);
-        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentStep1);
-
-        fragmentTransaction.show(fragmentStep0);
-        fragmentTransaction.hide(fragmentStep1);
+        fragmentTransaction.show(fragmentCategoria);
+        fragmentTransaction.hide(fragmentMapa);
+        fragmentTransaction.hide(fragmentListCategoria);
 
         fragmentTransaction.commit();
 
@@ -53,9 +52,12 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0) {
-                    goToFragment(fragmentStep1, fragmentStep0);
+                        goToFragment(fragmentMapa, fragmentCategoria);
                 }else{
-                    goToFragment(fragmentStep0, fragmentStep1);
+                    if(fragmentCategoria.isVisible())
+                        goToFragment(fragmentCategoria, fragmentMapa);
+                    else if(fragmentListCategoria.isVisible())
+                        goToFragment(fragmentListCategoria, fragmentMapa);
                 }
 
             }
@@ -84,7 +86,6 @@ public class ActivityMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -97,5 +98,20 @@ public class ActivityMain extends AppCompatActivity {
         fragmentTransaction.show(show);
         fragmentTransaction.hide(hide);
         fragmentTransaction.commit();
+    }
+
+    public void changeCategory(String categoria){
+        fragmentListCategoria.tvCategoria.setText(categoria);
+        goToFragment(fragmentCategoria, fragmentListCategoria);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (fragmentListCategoria.isVisible()) {
+            goToFragment(fragmentListCategoria, fragmentCategoria);
+            return;
+        }
+        finish();
     }
 }
