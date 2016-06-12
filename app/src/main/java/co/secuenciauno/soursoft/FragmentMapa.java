@@ -7,7 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 //import com.google.android.gms.maps.GoogleMapOptions;
 
@@ -15,7 +20,7 @@ import com.google.android.gms.maps.GoogleMapOptions;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentMapa extends Fragment {
+public class FragmentMapa extends Fragment implements OnMapReadyCallback {
 
     View view;
 
@@ -31,9 +36,15 @@ public class FragmentMapa extends Fragment {
         if(view == null){
             view = inflater.inflate(R.layout.fragment_mapa, container, false);
             GoogleMapOptions options = new GoogleMapOptions().liteMode(true);
+//            MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+//            mapFragment.getMapAsync(this);
         }
         return view;
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap map) {
+//        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
 }

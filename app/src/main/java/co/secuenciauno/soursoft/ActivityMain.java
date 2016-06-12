@@ -21,6 +21,7 @@ public class ActivityMain extends AppCompatActivity {
     FragmentCategoria fragmentCategoria = new FragmentCategoria();
     FragmentMapa fragmentMapa = new FragmentMapa();
     FragmentListCategoria fragmentListCategoria = new FragmentListCategoria();
+    FragmentClient fragmentClient = new FragmentClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,12 @@ public class ActivityMain extends AppCompatActivity {
         fragmentTransaction.add(R.id.rl_app_bar_main, fragmentCategoria);
         fragmentTransaction.add(R.id.rl_app_bar_main, fragmentMapa);
         fragmentTransaction.add(R.id.rl_app_bar_main, fragmentListCategoria);
+        fragmentTransaction.add(R.id.rl_app_bar_main, fragmentClient);
 
         fragmentTransaction.show(fragmentCategoria);
         fragmentTransaction.hide(fragmentMapa);
         fragmentTransaction.hide(fragmentListCategoria);
+        fragmentTransaction.hide(fragmentClient);
 
         fragmentTransaction.commit();
 
@@ -105,11 +108,19 @@ public class ActivityMain extends AppCompatActivity {
         goToFragment(fragmentCategoria, fragmentListCategoria);
     }
 
+    public void changeClient(String client){
+        fragmentClient.tvClientName.setText(client);
+        goToFragment(fragmentListCategoria, fragmentClient);
+    }
+
 
     @Override
     public void onBackPressed() {
         if (fragmentListCategoria.isVisible()) {
             goToFragment(fragmentListCategoria, fragmentCategoria);
+            return;
+        }else if (fragmentClient.isVisible()) {
+            goToFragment(fragmentClient, fragmentCategoria);
             return;
         }
         finish();

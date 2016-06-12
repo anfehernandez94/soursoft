@@ -55,15 +55,17 @@ public class FragmentListCategoria extends Fragment {
     }
 
     private void fillListCategoria(){
-        AdapterListCategoria adapter = new AdapterListCategoria(getActivity(), listClients/*,prgmImages*/);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), R.layout.adapter_list_categoria, R.id.tv_client_name,listClients);
+//        AdapterListCategoria adapter = new AdapterListCategoria(getActivity(), listClients/*,prgmImages*/);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getActivity(), R.layout.adapter_list_categoria, R.id.tv_client_name,listClients);
         lvClient.setAdapter(adapter1);
-//        adapter.notifyDataSetChanged();
+        adapter1.notifyDataSetChanged();
         lvClient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String  itemValue    = (String) lvClient.getItemAtPosition(position);
-                Toast.makeText(getActivity(), "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
+                ((ActivityMain)getActivity()).changeClient(itemValue);
+
+//                Toast.makeText(getActivity(), "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
             }
         });
     }

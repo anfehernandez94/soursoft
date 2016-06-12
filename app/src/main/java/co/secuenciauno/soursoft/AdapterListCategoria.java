@@ -54,6 +54,7 @@ public class AdapterListCategoria extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if(view == null){
             view = inflater.inflate(R.layout.adapter_list_categoria, null);
+
         }
 
         holder.tvClientName=(TextView) view.findViewById(R.id.tv_client_name);
